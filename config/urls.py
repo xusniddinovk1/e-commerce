@@ -17,7 +17,7 @@ schem_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('api/v1/', include('products.urls')),
+    path('api/v1/', include('products.urls')),
 
     re_path(r'^swagger(?P<format>\.json|\.yaml)$', schem_view.without_ui(cache_timeout=0), name='schem-json'),
     path('', schem_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),

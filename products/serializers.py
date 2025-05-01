@@ -1,6 +1,7 @@
 from .models import Category, Product, Review
 from rest_framework import serializers
 
+
 class CategorySerializers(serializers.ModelSerializer):
     class Meta:
         model = Category
@@ -18,4 +19,4 @@ class ProductSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ['id', 'name', 'description', 'price', 'avg_rating']
+        fields = ['id', 'name', 'description', 'category', 'price', 'avg_rating']
