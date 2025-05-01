@@ -1,3 +1,54 @@
-from django.shortcuts import render
+from rest_framework import viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from django.db import models
+from .models import Category, Product, Review
+from .serializers import CategorySerializers, ProductSerializers, ReviewSerializers
 
-# Create your views here.
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializers
+
+
+class ReviewViewSet(viewsets.ModelViewSet):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializers
+
+
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializers
+
+    def list(self, request, *args, **kwargs):
+        category = request.query_params.get('category', None)
+        if category:
+            self.queryset = self.queryset.filter(category=category)
+        return super().list(request, *args, **kwargs)
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        related_products = Product.objects.filter(category=instance.category).exclude(id=instance.id)[:5]
+        related_serializer = ProductSerializers(related_products, many=True)
+        return Response({
+            "product": serializer.data,
+            "related_products": related_serializer.data
+        })
+
+    @action(detail=False, methods=['get'])
+    def top_rated(self, request):
+        top_products = Product.objects.annotate(avg_rating=models.Avg('reviews__rating')).order_by('-avg_rating')[:2]
+        serializer = ProductSerializers(top_products, many=True)
+        return Response(serializer.data)
+
+    @action(detail=False, methods=['get'])
+    def average_rating(self, request, pk=None):
+        product = self.get_object()
+        reviews = product.reviews.all()
+
+        if reviews.count() == 0:
+            return Response({'Average rating: No reviews yet'})
+
+        avg_rating = sum(reviews.rating for review in reviews) / reviews.count()
+        return Response({"Average rating:", avg_rating})
