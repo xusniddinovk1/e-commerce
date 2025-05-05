@@ -50,5 +50,5 @@ class ProductViewSet(viewsets.ModelViewSet):
         if reviews.count() == 0:
             return Response({'Average rating: No reviews yet'})
 
-        avg_rating = sum(reviews.rating for review in reviews) / reviews.count()
+        avg_rating = sum(reviews.rating for _ in reviews) / reviews.count()
         return Response({"Average rating:", avg_rating})
