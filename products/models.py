@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.utils import timezone
 from django.db import models
 
 
@@ -11,6 +12,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    DoesNotExist = None
     objects = None
     name = models.CharField(max_length=200, null=False, blank=False)
     description = models.CharField(max_length=155, null=False, blank=False)
@@ -34,6 +36,7 @@ class Review(models.Model):
 
 
 class FlashSale(models.Model):
+    objects = None
     product = models.OneToOneField(Product, on_delete=models.CASCADE)
     discount_percentage = models.PositiveIntegerField()  # e.g: 20 means 20%
     start_time = models.DateTimeField()
@@ -47,3 +50,8 @@ class FlashSale(models.Model):
         unique_together = ('product', 'start_time', 'end_time')
 
 
+class ProductViewHistory(models.Model):
+    objects = None
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
