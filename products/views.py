@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from django.db import models
 from .models import Category, Product, Review
 from .serializers import CategorySerializers, ProductSerializers, ReviewSerializers
+# from rest_framework import generics
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
