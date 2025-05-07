@@ -1,13 +1,13 @@
-from rest_framework import viewsets
-from rest_framework import filters
-from rest_framework.decorators import action
-from rest_framework.response import Response
 from django.db import models
-from .models import Category, Product, Review
-from .serializers import CategorySerializers, ProductSerializers, ReviewSerializers
-from rest_framework.pagination import PageNumberPagination
 from django_filters import rest_framework as django_filters
-from .filters import ProductFilter
+from rest_framework import filters
+from rest_framework import viewsets
+from rest_framework.decorators import action
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.response import Response
+from products.filters import ProductFilter
+from products.models import Category, Review, Product
+from products.serializers import CategorySerializers, ReviewSerializers, ProductSerializers
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
