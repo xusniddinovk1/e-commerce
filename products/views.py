@@ -1,3 +1,5 @@
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 from django.db import models
 from django_filters import rest_framework as django_filters
 from rest_framework import filters
@@ -34,6 +36,15 @@ class ProductViewSet(viewsets.ModelViewSet):
     filterset_class = ProductFilter
     search_fields = ['name', 'description']
 
+    @swagger_auto_schema(
+        manual_parameters=[
+            openapi.Parameter('category', openapi.IN_QUERY, description="Category ID", type=openapi.TYPE_INTEGER),
+            openapi.Parameter('min_price', openapi.IN_QUERY, description="Minimal price", type=openapi.TYPE_NUMBER),
+            openapi.Parameter('max_price', openapi.IN_QUERY, description="Maximal price", type=openapi.TYPE_NUMBER),
+            openapi.Parameter('search', openapi.IN_QUERY, description="Search in name or description",
+                              type=openapi.TYPE_STRING),
+        ]
+    )
     def list(self, request, *args, **kwargs):
         category = request.query_params.get('category', None)
         if category:
