@@ -31,7 +31,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializers
 
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]     # default = AllowAny
 
     pagination_class = CustomPagination  # api/products/?page=2
 
