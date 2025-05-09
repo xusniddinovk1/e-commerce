@@ -6,6 +6,7 @@ from rest_framework import filters
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from products.filters import ProductFilter
 from products.models import Category, Review, Product
@@ -29,6 +30,8 @@ class ReviewViewSet(viewsets.ModelViewSet):
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializers
+
+    permission_classes = [IsAuthenticated]
 
     pagination_class = CustomPagination  # api/products/?page=2
 
