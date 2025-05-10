@@ -2,7 +2,8 @@ from rest_framework import viewsets
 from rest_framework.pagination import PageNumberPagination
 from products.models import Category, Review
 from products.permissions import IsOwnerOrReadOnly
-from products.serializers import CategorySerializers, ReviewSerializers
+from products.serializers import CategorySerializers, ReviewSerializers, OrderSerializers
+from products.models import Order
 
 
 class CategoryViewSet(viewsets.ModelViewSet):

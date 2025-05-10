@@ -1,4 +1,4 @@
-from .models import Category, Product, Review, ProductViewHistory
+from products.models import Category, Product, Review, ProductViewHistory
 from rest_framework import serializers
 
 
