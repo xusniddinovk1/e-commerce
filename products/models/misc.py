@@ -2,7 +2,7 @@ from datetime import timezone
 from django.contrib.auth.models import User
 from django.db import models
 
-from products.models import Product
+from .product import Product
 
 
 class Review(models.Model):
