@@ -1,16 +1,8 @@
-from drf_yasg.utils import swagger_auto_schema
-from drf_yasg import openapi
-from django.db import models
-from django_filters import rest_framework as django_filters
-from rest_framework import filters
 from rest_framework import viewsets
-from rest_framework.decorators import action
 from rest_framework.pagination import PageNumberPagination
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
-from products.filters import ProductFilter
-from products.models import Category, Review, Product
-from products.serializers import CategorySerializers, ReviewSerializers, ProductSerializers
+from products.models import Category, Review
+from products.permissions import IsOwnerOrReadOnly
+from products.serializers import CategorySerializers, ReviewSerializers
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
@@ -20,6 +12,12 @@ class CategoryViewSet(viewsets.ModelViewSet):
 
 class CustomPagination(PageNumberPagination):
     page_size = 4
+
+
+class OrderViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsOwnerOrReadOnly]
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializers
 
 
 class ReviewViewSet(viewsets.ModelViewSet):
