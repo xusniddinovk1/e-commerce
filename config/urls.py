@@ -4,7 +4,6 @@ from drf_yasg.generators import OpenAPISchemaGenerator
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from rest_framework import permissions
-from products.services import admin_replenish_stock
 from rest_framework_simplejwt.views import (
     TokenRefreshView,
     TokenVerifyView, TokenObtainPairView
@@ -44,7 +43,6 @@ urlpatterns = [
     path('api/v1/auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/v1/auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/v1/auth/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
-    path('admin/replenish_stock/<int:product_id>/<int:amount>', admin_replenish_stock, name='admin_replenish_stock'),
 
     re_path(r'^swagger(?P<format>\.json|\.yaml)$', schem_view.without_ui(cache_timeout=0), name='schem-json'),
     path('', schem_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
