@@ -13,25 +13,15 @@ from products.models import Category, Review, Product
 from products.serializers import CategorySerializers, ReviewSerializers, ProductSerializers
 
 
-class CategoryViewSet(viewsets.ModelViewSet):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializers
-
-
 class CustomPagination(PageNumberPagination):
     page_size = 4
-
-
-class ReviewViewSet(viewsets.ModelViewSet):
-    queryset = Review.objects.all()
-    serializer_class = ReviewSerializers
 
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializers
 
-    permission_classes = [IsAuthenticated]     # default = AllowAny
+    permission_classes = [IsAuthenticated]  # default = AllowAny
 
     pagination_class = CustomPagination  # api/products/?page=2
 
