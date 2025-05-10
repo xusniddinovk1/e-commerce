@@ -1,3 +1,10 @@
+from datetime import timezone
+from django.contrib.auth.models import User
+from django.db import models
+
+from products.models import Product
+
+
 class Review(models.Model):
     objects = None
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name='reviews')
