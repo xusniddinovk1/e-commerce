@@ -24,13 +24,3 @@ services:
     ports:
       - "6379:6379"
 
-  celery:
-    build: .
-    command: celery -A config worker --loglevel=info
-    volumes:
-      - .:/app
-    depends_on:
-      - rabbitmq
-      - redis
-    env_file:
-      - ./.env
