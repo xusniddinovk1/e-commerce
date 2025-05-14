@@ -15,5 +15,5 @@ def send_telegram_notification(order_id, product_name, quantity, customer_userna
 
     response = requests.post(
         url=f'https://api.telegram.org/bot{token}/{method}',
-        data={'chat_id': 392330197, 'text': message_text}
+        data={'chat_id': 6108249367, 'text': message_text}
     ).json()
