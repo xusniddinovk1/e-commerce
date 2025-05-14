@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.pagination import PageNumberPagination
 from products.models import Category, Review
-from products.permissions import IsOwnerOrReadOnly
+from products.permissions import IsOwnerOrReadOnly, IsStaffOrReadOnly
 from products.serializers import CategorySerializers, ReviewSerializers, OrderSerializers
 from products.models import Order
 
@@ -9,6 +9,8 @@ from products.models import Order
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializers
+
+    permission_classes = [IsStaffOrReadOnly]  # default = AllowAny
 
 
 class CustomPagination(PageNumberPagination):
