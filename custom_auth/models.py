@@ -9,7 +9,7 @@ class CustomUserManager(BaseUserManager):
             raise ValueError("The phone number must be set")
         user = self.model(phone_number=phone_number, **extra_fields)
         user.set_password(password)
-        user.saving(using=self._db)
+        user.save(using=self._db)
         return user
 
     def create_superuser(self, phone_number, password=None, **extra_fields):
