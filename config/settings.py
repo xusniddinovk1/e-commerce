@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -66,6 +67,7 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL = 'custom_auth.CustomUer'
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
