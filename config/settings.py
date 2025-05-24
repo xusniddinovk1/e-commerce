@@ -67,7 +67,7 @@ DATABASES = {
     }
 }
 
-AUTH_USER_MODEL = 'custom_auth.CustomUer'
+AUTH_USER_MODEL = 'custom_auth.CustomUser'
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
