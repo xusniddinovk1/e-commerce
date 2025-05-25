@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -94,3 +95,35 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 15,
+
+    'DEFAULT_AUTHENTICATION_CLASS': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ]
+}
+
+SIMPLEJWT = {
+    'ALGORITHM': 'HS256',
+    'SLIDING_TOKEN_LIFETIME': timedelta(minutes=120),
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1)
+}
+
+DJOSER = {
+    'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}/',
+    'USERNAME_RESET_CONFIRM_URL': 'username/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': 'activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': True,
+    'SERIALIZERS': {},
+}
+
+TELEGRAM_BOT_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN')
+
+CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL')  # RabbitMQ as a broker
+CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND')  # Redis as a result backend
+STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+SMS_KEY = os.environ.get('SMS_KEY')
+CSRF_TRUSTED_ORIGINS = ["https://*", "http://*"]
