@@ -10,7 +10,7 @@ class OrderSerializer(serializers.ModelSerializer):
         model = Order
         fields = ['id', 'product', 'customer', 'quantity', 'total_price', 'created_at', 'phone_number', 'is_paid']
 
-    def get_total_price(obj):
+    def get_total_price(self, obj):
         return obj.product.price * obj.quantity
 
     def validate_quantity(self, value):
