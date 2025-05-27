@@ -1,12 +1,11 @@
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticated
 from products.models import Review, Category, Order
 from products.serializers import ReviewSerializer, CategorySerializer, OrderSerializer
 from products.permissions import IsOwnerOrReadOnly
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsOwnerOrReadOnly]
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
