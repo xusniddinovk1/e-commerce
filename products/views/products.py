@@ -4,7 +4,7 @@ from django_filters import rest_framework as django_filters
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from products.filters import ProductFilter
-from products.models import Product, Review
+from products.models import Product
 from products.permissions import IsStaffOrReadOnly
 from products.serializers import ProductSerializers
 from rest_framework import viewsets, filters
