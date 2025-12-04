@@ -1,10 +1,10 @@
 # e-commerce
 
-Django + Django REST Framework asosida yaratilgan kuchli va kengaytiriladigan e-commerce backend xizmati. Loyihada JWT orqali autentifikatsiya, mahsulotlar boshqaruvi, buyurtmalar tizimi va konteynerlash uchun Docker ishlatiladi.
+Django + Django REST Framework asosida yaratilgan kengaytiriladigan e-commerce backend xizmati. Loyihada JWT orqali autentifikatsiya, mahsulotlar boshqaruvi, buyurtmalar tizimi va konteynerlash uchun Docker ishlatiladi.
 
 ---
 
-## 🚀 Features
+## 🚀 Xususiyatlari
 
 - JWT autentifikatsiya (login/register)
 - Mahsulotlar CRUD
@@ -13,11 +13,10 @@ Django + Django REST Framework asosida yaratilgan kuchli va kengaytiriladigan e-
 - Buyurtmalar (Orders) moduli
 - Admin panel (Django Admin)
 - Docker orqali konteynerlash
-- RESTful API (DRF)
 
 ---
 
-## 🛠 Tech Stack
+## 🛠 FOydalanilgan texnologiyalar
 
 - **Python**
 - **Django**
@@ -25,14 +24,3 @@ Django + Django REST Framework asosida yaratilgan kuchli va kengaytiriladigan e-
 - **JWT Authentication**
 - **Docker & Docker Compose**
 
----
-
-## 📦 Installation
-
-Quyidagi qadamlar loyihani lokal serverda ishga tushiradi.
-
-### 1. Reponi klonlash
-
-```bash
-git clone https://github.com/username/ecommerce.git
-cd ecommerce
